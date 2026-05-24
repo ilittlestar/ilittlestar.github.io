@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Happy Birthday, My Love 💖 | Flirty & Fun</title>
+    <!-- Google Fonts: Exquisite & Stylish Fonts + Handwriting Elegance -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #ffdfe8 0%, #ffb7c5 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, .heart-note, .message-card p strong, .gift-icon {
+            font-family: 'Great Vibes', 'Dancing Script', cursive;
+        }
+        p, button, .grid-card .back, .message-card p, .photo-grid, .glass-card {
+            font-family: 'Playfair Display', 'Poppins', serif;
+        }
+        button {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* CONTINUOUS Rose Petal & Floating hearts */
+        .petal-container, .heart-float-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.85;
+            animation: fallContinuous linear infinite;
+            background: #ff4d6d;
+            width: 12px;
+            height: 18px;
+            border-radius: 150% 0 150% 0;
+            transform: rotate(45deg);
+            box-shadow: 0 0 6px rgba(255, 80, 120, 0.7);
+        }
+
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            color: #ff1e4d;
+            font-size: 1.2rem;
+            text-shadow: 0 0 3px white;
+            animation: floatUpContinuous linear infinite;
+        }
+
+        @keyframes fallContinuous {
+            0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.4; }
+        }
+
+        @keyframes floatUpContinuous {
+            0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+            15% { opacity: 0.9; }
+            85% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) scale(0.8); opacity: 0; }
+        }
+
+        /* Pages wrapper */
+        .page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            padding: 2rem 1rem;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .active-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .glass-card {
+            background: rgba(255, 245, 247, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            box-shadow: 0 20px 35px rgba(255, 30, 80, 0.2);
+            padding: 2rem;
+            margin: 1rem;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid rgba(255, 105, 130, 0.5);
+            transition: all 0.3s;
+        }
+
+        button {
+            background: #ff477e;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 50, 100, 0.4);
+            transition: 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #ff1f66;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 30, 80, 0.6);
+        }
+
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .photo-item {
+            width: 140px;
+            height: 140px;
+            border-radius: 30px;
+            object-fit: cover;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            border: 3px solid white;
+            transition: 0.3s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .anime-hug {
+            width: 280px;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 60px;
+            background: #ffe2e8;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .anime-hug img {
+            width: 100%;
+            border-radius: 40px;
+        }
+
+        /* Flirty & Humorous Message Card - Single Card */
+        .flirty-card {
+            background: linear-gradient(135deg, #fff5f8, #ffe0e8);
+            border-radius: 50px;
+            padding: 2rem 1.8rem;
+            margin: 25px 0;
+            text-align: center;
+            border: 2px solid #ff8aa8;
+            box-shadow: 0 15px 30px rgba(255, 50, 100, 0.2);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+        .flirty-card:hover {
+            transform: scale(1.01);
+        }
+        .flirty-emoji {
+            font-size: 3rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            animation: wink 2s infinite;
+        }
+        @keyframes wink {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 5px #ff6699);}
+        }
+        .flirty-title {
+            font-size: 1.9rem;
+            font-family: 'Great Vibes', cursive;
+            color: #b81b4b;
+            margin: 10px 0;
+        }
+        .flirty-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #a13054;
+            background: rgba(255,255,240,0.7);
+            border-radius: 40px;
+            padding: 20px;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .flirty-footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #c95a7a;
+            font-weight: 500;
+        }
+        .witty-joke {
+            background: rgba(255,220,230,0.6);
+            border-radius: 30px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* Grid for question marks */
+        .grid-special {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 480px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glass-card .grid-special {
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            place-items: center;
+        }
+
+        .grid-card {
+            background: #ffb7c5;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            max-width: 140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .grid-card.flipped {
+            background: #ff8aa8;
+            transform: rotateY(180deg);
+        }
+
+        .grid-card .front, .grid-card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .grid-card .front {
+            background: #ff5f8e;
+            transform: rotateY(0deg);
+            font-size: 2.5rem;
+        }
+
+        .grid-card .back {
+            background: #ffebf0;
+            color: #b11248;
+            transform: rotateY(180deg);
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 550px) {
+            .grid-special { gap: 12px; max-width: 350px; }
+            .grid-card .back { font-size: 0.75rem; padding: 6px; }
+            .grid-card .front { font-size: 1.8rem; }
+            .flirty-message { font-size: 1rem; }
+            .flirty-title { font-size: 1.5rem; }
+        }
+
+        /* Gift box */
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background: #ff4d6d;
+            margin: 40px auto;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gift-box:hover { transform: scale(1.02); }
+        .gift-box:active { transform: scale(0.98); }
+        .gift-lid {
+            width: 210px;
+            height: 60px;
+            background: #ff1f60;
+            position: absolute;
+            top: -25px;
+            left: -5px;
+            border-radius: 20px 20px 10px 10px;
+        }
+        .gift-ribbon {
+            position: absolute;
+            background: gold;
+            width: 30px;
+            height: 200px;
+            left: 85px;
+            top: 0;
+        }
+        .gift-ribbon-h {
+            width: 200px;
+            height: 30px;
+            top: 85px;
+            left: 0;
+            position: absolute;
+            background: gold;
+        }
+        .gift-icon {
+            font-size: 3rem;
+            color: white;
+            z-index: 5;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .heart-note {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #a1103c;
+            text-shadow: 2px 2px 8px rgba(255,200,210,0.5);
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 20px;
+            text-align: center;
+            border-left: 10px solid #ff4d6d;
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #9e103a;
+            text-shadow: 3px 3px 10px rgba(255, 120, 140, 0.4);
+        }
+        h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #b81648;
+        }
+
+        footer {
+            font-size: 0.9rem;
+            margin-top: 30px;
+            color: #b34462;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            .photo-item { width: 100px; height: 100px; }
+            h1 { font-size: 2.4rem; }
+            .heart-note { font-size: 1.6rem; }
+            .glass-card { padding: 1.5rem; }
+        }
+        
+        @keyframes pulseRomance {
+            0% { transform: scale(1); text-shadow: 0 0 0px #ff4d6d; }
+            50% { transform: scale(1.2); text-shadow: 0 0 12px #ff8aa8; }
+            100% { transform: scale(1); text-shadow: 0 0 0px #ff4d6d; }
+        }
+        .fa-heart {
+            animation: pulseRomance 1.4s infinite ease-in-out;
+        }
+        
+        .music-note-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(255, 240, 245, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 5px 14px;
+            font-size: 0.7rem;
+            color: #a13e5c;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,105,130,0.4);
+        }
+        .music-note-indicator i {
+            color: #ff4d6d;
+            font-size: 0.8rem;
+            animation: subtleWave 1.2s infinite;
+        }
+        @keyframes subtleWave {
+            0% { opacity: 0.5; transform: scale(0.9);}
+            100% { opacity: 1; transform: scale(1.1);}
+        }
+    </style>
+</head>
+<body>
+
+<audio id="birthdayMusic" loop preload="auto" autoplay>
+    <source src="assets/song/title-song.mp3" type="audio/mpeg">
+    <source src="assets/song/title-song.mp3" type="audio/mpeg">
+</audio>
+
+<div id="petalContainer" class="petal-container"></div>
+<div id="heartFloatContainer" class="heart-float-container"></div>
+
+<!-- Page 1 -->
+<div id="page1" class="page active-page">
+    <div class="glass-card" style="text-align: center;">
+        <h1 style="font-size: 3.5rem;">🎂 Happy Birthday, My Love! 🎀</h1>
+        <div class="anime-hug">
+            <img src="assets/dp.jpg" alt="Little & Bald" style="filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2)); background: #f7cdd9; padding: 10px; border-radius: 40px;">
+        </div>
+        <p style="font-size: 1.3rem; margin: 20px; font-style: italic;">Every day with you is a beautiful chapter. Today is YOUR day, my princess! 💗</p>
+        <button id="celebrateBtn">🎉 Let's Celebrate 🎉</button>
+    </div>
+</div>
+
+<!-- Page 2: Photos -->
+<div id="page2" class="page">
+    <div class="glass-card" style="max-width: 700px; text-align: center; font-style: italic;">
+        <h2>✨ My Beautiful Girl ✨</h2>
+        <div class="photo-grid" id="photosGrid"></div>
+        <div class="message-card">
+            <i class="fas fa-heart" style="color:#ff4d6d; font-size: 2rem;"></i>
+            <p style="font-size: 1.5rem;"><strong>To the queen of my heart,</strong> 💌</p>
+            <p style="font-size: 1.1rem;">You light up my world like nobody else. Each moment with you is a gift I'll treasure forever. I love you beyond the stars, Little Star 🌟</p>
+        </div>
+        <button id="readMyHeartBtn">❤️ Read my heart ❤️</button>
+    </div>
+</div>
+
+<!-- Page 3: FLIRTY & HUMOROUS SINGLE CARD (Read my heart content) -->
+<div id="page3" class="page">
+    <div class="glass-card" style="max-width: 650px;">
+        <h2 style="text-align: center;"><i class="fas fa-heart"></i> Read My Heart <i class="fas fa-heart"></i></h2>
+        
+        <!-- Single flirtatious + humorous message card -->
+        <div class="flirty-card">
+            <div class="flirty-emoji">😘💌✨</div>
+            <div class="flirty-title">A Little Note For You...</div>
+            <div class="flirty-message">
+                "Hey beautiful, I think you've stolen something from me... <br>
+                <strong>my heart!</strong> 💘 (Don't worry, you can keep it forever.) <br><br>
+                I must warn you though — every time you smile, I fall for you all over again. <br>
+                It's becoming a serious addiction. 😍 <br><br>
+                Also, are you a magician? Because whenever I look at you, <br>
+                everyone else disappears. ✨ <br><br>
+                <i class="fas fa-heart" style="color:#ff4d6d;"></i> PS: Happy Birthday to the only person who makes my world go 'round (and my stomach do flips) 🎂💕
+            </div>
+            <div class="witty-joke">
+                <i class="fas fa-smile-wink"></i> Knock knock... Who's there? ... The guy who's madly in love with you! 😜
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button id="gameBtn">🎮 Let's play a game 🎮</button>
+        </div>
+    </div>
+</div>
+
+<!-- Page 4: Game Grid -->
+<div id="page4" class="page">
+    <div class="glass-card" style="max-width: 650px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <h2><i class="fas fa-question-circle"></i> Why you're special ✨</h2>
+        <div class="grid-special" id="specialGrid"></div>
+        <button id="nextToGiftBtn">🎁 Next 🎁</button>
+    </div>
+</div>
+
+<!-- Page 5: Gift Box -->
+<div id="page5" class="page">
+    <div class="glass-card" style="text-align: center;">
+        <h2>🎀 A little surprise for you 🎀</h2>
+        <div id="giftBoxArea" class="gift-box">
+            <div class="gift-lid"></div>
+            <div class="gift-ribbon"></div>
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-icon"><i class="fas fa-gift fa-3x"></i></div>
+        </div>
+        <p style="margin-top: 20px; font-family: 'Playfair Display'; font-style: italic;">Click on the gift box 💝</p>
+    </div>
+</div>
+
+<!-- Page 6: Final Love -->
+<div id="page6" class="page">
+    <div class="glass-card" style="text-align: center;">
+        <h1><i class="fas fa-heart" style="color:#ff1e4d;"></i> I LOVE YOU <i class="fas fa-heart" style="color:#ff1e4d;"></i></h1>
+        <div style="font-size: 4rem; margin: 20px;">
+            <i class="fas fa-heart" style="color:#ff1e4d;"></i>
+            <i class="fas fa-heart" style="color:#ff1e4d;"></i>
+            <i class="fas fa-heart" style="color:#ff1e4d;"></i>
+        </div>
+        <div class="heart-note">You are my forever and always. Thank you for being the best part of my life. Happy Birthday, my angel! 🌹💋</div>
+        <footer>With all my love, Bald 💖</footer>
+        <button id="restartBtn" style="background: #aa2e5a;">🌹 Love Again 🌹</button>
+    </div>
+</div>
+
+<script>
+    // ========== INFINITE ROSE PETALS (NEVER STOP) ==========
+    let petalInterval, heartInterval;
+    
+    function startInfiniteRosePetals() {
+        const container = document.getElementById('petalContainer');
+        if (!container) return;
+        if (petalInterval) clearInterval(petalInterval);
+        
+        function createSinglePetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const size = Math.random() * 14 + 7;
+            petal.style.width = size + 'px';
+            petal.style.height = (size * 1.3) + 'px';
+            petal.style.left = Math.random() * 100 + '%';
+            const duration = Math.random() * 5 + 3.5;
+            petal.style.animationDuration = duration + 's';
+            petal.style.animationDelay = Math.random() * 2 + 's';
+            petal.style.opacity = Math.random() * 0.6 + 0.3;
+            const rotation = Math.random() * 60 - 30;
+            petal.style.transform = `rotate(${rotation}deg)`;
+            container.appendChild(petal);
+            setTimeout(() => { if(petal && petal.remove) petal.remove(); }, duration * 1000 + 500);
+        }
+        
+        for (let i = 0; i < 70; i++) setTimeout(() => createSinglePetal(), i * 40);
+        petalInterval = setInterval(() => {
+            const petalsToCreate = Math.floor(Math.random() * 4) + 2;
+            for (let i = 0; i < petalsToCreate; i++) createSinglePetal();
+        }, 280);
+    }
+    
+    function startInfiniteFloatingHearts() {
+        const heartContainer = document.getElementById('heartFloatContainer');
+        if (!heartContainer) return;
+        if (heartInterval) clearInterval(heartInterval);
+        
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fas', 'fa-heart', 'floating-heart');
+            heart.style.left = Math.random() * 100 + '%';
+            const size = Math.random() * 22 + 12;
+            heart.style.fontSize = size + 'px';
+            const duration = Math.random() * 5 + 4.5;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            heartContainer.appendChild(heart);
+            setTimeout(() => { if(heart && heart.remove) heart.remove(); }, duration * 1000);
+        }
+        
+        for (let i = 0; i < 40; i++) setTimeout(() => createHeart(), i * 80);
+        heartInterval = setInterval(() => {
+            const heartsToCreate = Math.floor(Math.random() * 3) + 1;
+            for (let i = 0; i < heartsToCreate; i++) createHeart();
+        }, 450);
+    }
+    
+    // ========== AUTO MUSIC ==========
+    const musicAudio = document.getElementById('birthdayMusic');
+    if (musicAudio) {
+        musicAudio.volume = 0.4;
+        musicAudio.loop = true;
+        const playAudio = () => {
+            musicAudio.play().catch(() => {
+                const silentAudio = new Audio();
+                silentAudio.volume = 0;
+                silentAudio.play().then(() => musicAudio.play().catch(() => {})).catch(() => {});
+            });
+        };
+        playAudio();
+        window.addEventListener('load', () => setTimeout(() => { if(musicAudio.paused) musicAudio.play().catch(() => {}); }, 100));
+    }
+    
+    // ========== PAGE & GAME LOGIC ==========
+    const demoImages = [
+        "assets/little/1.jpeg",
+        "https://images.pexels.com/photos/3812746/pexels-photo-3812746.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+        "https://images.pexels.com/photos/3812944/pexels-photo-3812944.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+        "https://images.pexels.com/photos/4339882/pexels-photo-4339882.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+        "https://images.pexels.com/photos/3812934/pexels-photo-3812934.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+        "https://images.pexels.com/photos/5952705/pexels-photo-5952705.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+    ];
+    const specialMessages = [
+        "Your Smile", "Your Kindness", "Your Laugh", 
+        "Your Strength", "Your Loyalty", "Your Warm Hugs",
+        "Your Passion", "Your Patience", "The way you love me"
+    ];
+    
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (musicAudio && musicAudio.paused) musicAudio.play().catch(() => {});
+    }
+    
+    function loadPhotos() {
+        const grid = document.getElementById('photosGrid');
+        if (grid) {
+            grid.innerHTML = '';
+            demoImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.classList.add('photo-item');
+                img.alt = "little";
+                grid.appendChild(img);
+            });
+        }
+    }
+    
+    function buildGameGrid() {
+        const gridContainer = document.getElementById('specialGrid');
+        if (!gridContainer) return;
+        gridContainer.innerHTML = '';
+        for(let i = 0; i < 9; i++) {
+            const card = document.createElement('div');
+            card.className = 'grid-card';
+            card.setAttribute('data-flipped', 'false');
+            const frontDiv = document.createElement('div');
+            frontDiv.className = 'front';
+            frontDiv.innerHTML = '❓';
+            const backDiv = document.createElement('div');
+            backDiv.className = 'back';
+            backDiv.innerHTML = `<span style="font-family: Italic; font-size: 20px; font-weight: bold; color: #e44b8d;">${specialMessages[i]}</span>`;
+
+            card.appendChild(frontDiv);
+            card.appendChild(backDiv);
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if(card.getAttribute('data-flipped') === 'false') {
+                    card.style.transform = 'rotateY(180deg)';
+                    card.setAttribute('data-flipped', 'true');
+                }
+            });
+            gridContainer.appendChild(card);
+        }
+    }
+    
+    // Navigation
+    document.getElementById('celebrateBtn')?.addEventListener('click', () => showPage('page2'));
+    document.getElementById('readMyHeartBtn')?.addEventListener('click', () => showPage('page3'));
+    document.getElementById('gameBtn')?.addEventListener('click', () => showPage('page4'));
+    document.getElementById('nextToGiftBtn')?.addEventListener('click', () => showPage('page5'));
+    const giftArea = document.getElementById('giftBoxArea');
+    if(giftArea) giftArea.addEventListener('click', () => showPage('page6'));
+    document.getElementById('restartBtn')?.addEventListener('click', () => showPage('page1'));
+    
+    // Observer for game grid
+    const observer = new MutationObserver(() => {
+        if(document.getElementById('page4')?.classList.contains('active-page')) buildGameGrid();
+    });
+    observer.observe(document.getElementById('page4'), { attributes: true, attributeFilter: ['class'] });
+    
+    loadPhotos();
+    buildGameGrid();
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `.grid-card { transition: transform 0.5s; transform-style: preserve-3d; }`;
+    document.head.appendChild(styleSheet);
+    
+    startInfiniteRosePetals();
+    startInfiniteFloatingHearts();
+    
+    window.addEventListener('load', () => {
+        const hugImg = document.querySelector('.anime-hug img');
+        if(hugImg) hugImg.src = "assets/dp.jpg";
+    });
+    
+    setInterval(() => {
+        const box = document.getElementById('giftBoxArea');
+        if(box && document.getElementById('page5')?.classList.contains('active-page')) {
+            box.style.transform = 'scale(1.02)';
+            setTimeout(() => { if(box) box.style.transform = 'scale(1)'; }, 300);
+        }
+    }, 1200);
+    
+    console.log("💖 Flirty & humorous card ready! Read my heart with a smile.");
+</script>
+</body>
+</html>
